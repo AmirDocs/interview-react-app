@@ -17,7 +17,6 @@ jobs:
         run: |
          cd app
          ls
-         sudo chown -R $(whoami)
          sudo chmod -R 777
 
 
