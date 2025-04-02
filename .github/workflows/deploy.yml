@@ -17,16 +17,18 @@ jobs:
         run: |
          cd app
          ls
+         sudo chown -R $USER:$USER
+         sudo chmod -R 777
+
 
       - name: Install and Lint
         run: |
-          npm cache clean --force
           if [ ! -f package-lock.json ]; then
             echo "package-lock.json not found, running npm install to generate it"
-            npm install
+            sudo npm install
           else
             echo "package-lock.json found, running npm ci"
-            npm ci
+            sudo npm ci
           fi
           npm run lint && npm run build
 
