@@ -15,8 +15,8 @@ jobs:
 
       - name: Install and Lint
         run: |
-          npm ci
           pwd
+          npm ci
           npm run lint && npm run build
 
       - name: Docker Build
