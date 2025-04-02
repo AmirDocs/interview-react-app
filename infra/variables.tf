@@ -46,7 +46,7 @@ variable "domain_root" {
 variable "subdomain_prefix" {
   type        = string
   description = "Subdomain prefix"
-  default = "investorflow"
+  default     = "investorflow"
 }
 
 variable "subscription_id" {

@@ -1,46 +1,46 @@
-# name: Build and Deploy App
-# on:
-#   push:
-#     branches: ["main"]
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     environment: dev # dev as example
-#     steps:
-#       - uses: actions/checkout@v3
+name: Build and Deploy App
+on:
+  push:
+    branches: ["main"]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev # dev as example
+    steps:
+      - uses: actions/checkout@v3
 
-#       - uses: actions/setup-node@v3
-#         with:
-#           node-version: 18
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
-#       - name: Install and Lint
-#         run: |
-#           npm ci
-#           npm run lint && npm run build
+      - name: Install and Lint
+        run: |
+          npm ci
+          npm run lint && npm run build
 
-#       - name: Docker Build
-#         run: docker build -t myregistry.azurecr.io/investorflow:${{ github.sha }} .
+      - name: Docker Build
+        run: docker build -t myregistry.azurecr.io/investorflow:${{ github.sha }} .
 
-#       - name: Azure Login (OIDC or SPN)
-#         uses: azure/login@v1
-#         with:
-#           creds: ${{ secrets.AZURE_CREDENTIALS_DEV }}
+      - name: Azure Login (OIDC or SPN)
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS_DEV }}
 
-#       - name: Azure CR Login
-#         uses: azure/docker-login@v1
-#         with:
-#           login-server: myregistry.azurecr.io
-#           username: ${{ secrets.ACR_USERNAME_DEV }}
-#           password: ${{ secrets.ACR_PASSWORD_DEV }}
+      - name: Azure CR Login
+        uses: azure/docker-login@v1
+        with:
+          login-server: myregistry.azurecr.io
+          username: ${{ secrets.ACR_USERNAME_DEV }}
+          password: ${{ secrets.ACR_PASSWORD_DEV }}
 
-#       - name: Push Image
-#         run: docker push myregistry.azurecr.io/investorflow:${{ github.sha }}
+      - name: Push Image
+        run: docker push myregistry.azurecr.io/investorflow:${{ github.sha }}
 
-#     #   - name: Deploy to Container App
-#     #     uses: azure/container-apps-deploy-action@v1
-#     #     with:
-#     #       azureCredentials: ${{ secrets.AZURE_CREDENTIALS_DEV }}
-#     #       resourceGroup: my-aca-resource-group
-#     #       containerAppName: investorflow-app
-#     #       imageToDeploy: myregistry.azurecr.io/investorflow:${{ github.sha }}
-#     #       containerRegistry: myregistry.azurecr.io
+    #   - name: Deploy to Container App
+    #     uses: azure/container-apps-deploy-action@v1
+    #     with:
+    #       azureCredentials: ${{ secrets.AZURE_CREDENTIALS_DEV }}
+    #       resourceGroup: my-aca-resource-group
+    #       containerAppName: investorflow-app
+    #       imageToDeploy: myregistry.azurecr.io/investorflow:${{ github.sha }}
+    #       containerRegistry: myregistry.azurecr.io
