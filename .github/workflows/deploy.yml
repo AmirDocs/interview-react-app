@@ -36,6 +36,7 @@ jobs:
             sudo npm ci
           fi
             ls -al
+            npm run
             npm run lint && npm run build
 
       - name: Docker Build
