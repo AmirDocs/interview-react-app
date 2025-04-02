@@ -12,11 +12,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      
+      - name: Navigate to app directory to install dependencies
+        run: cd app
 
       - name: Install and Lint
         run: |
-          echo "Current directory: $(pwd)"
-          cd app
           npm ci
           npm run lint && npm run build
 
