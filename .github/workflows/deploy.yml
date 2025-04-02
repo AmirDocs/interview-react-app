@@ -18,7 +18,7 @@ jobs:
          cd app
          ls -al
          chmod 644 package.json
-         sudo chmod -R 777 app/
+         sudo chmod -R 777 package.json
 
 
       - name: Install and Lint
