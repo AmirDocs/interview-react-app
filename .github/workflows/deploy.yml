@@ -16,8 +16,9 @@ jobs:
       - name: Navigate to app directory to install dependencies
         run: |
          cd app
-         ls
-         sudo chmod -R 777
+         ls -al
+         chmod 644 package.json
+         sudo chmod -R 777 app/
 
 
       - name: Install and Lint
