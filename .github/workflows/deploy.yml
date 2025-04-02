@@ -15,7 +15,7 @@ jobs:
 
       - name: Install and Lint
         run: |
-          pwd
+          echo "Current directory: $(pwd)"
           npm ci
           npm run lint && npm run build
 
