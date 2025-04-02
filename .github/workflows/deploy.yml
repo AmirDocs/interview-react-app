@@ -15,6 +15,7 @@ jobs:
       
       - name: Navigate to app directory to install dependencies
         run: cd app
+             ls
 
       - name: Install and Lint
         run: |
