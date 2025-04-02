@@ -1,0 +1,14 @@
+variable "name" {
+  type = string
+}
+variable "rg_name" {
+  type = string
+}
+variable "location" {
+  type    = string
+  default = "westus"
+}
+
+variable "subnet_id" {
+  type = string
+}
